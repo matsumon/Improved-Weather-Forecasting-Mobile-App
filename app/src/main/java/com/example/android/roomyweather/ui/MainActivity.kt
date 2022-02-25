@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -42,7 +43,8 @@ class MainActivity : AppCompatActivity() {
     private val tag = "MainActivity"
 
     private val viewModel: FiveDayForecastViewModel by viewModels()
-
+    private val cityViewModel: CityViewModel by viewModels()
+    private var cityName: String? = null
     private lateinit var forecastAdapter: ForecastAdapter
 
     private lateinit var forecastListRV: RecyclerView
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                 forecastListRV.visibility = View.VISIBLE
                 forecastListRV.scrollToPosition(0)
                 supportActionBar?.title = forecast.city.name
+                cityName = forecast.city.name
             }
         }
 
@@ -98,6 +101,10 @@ class MainActivity : AppCompatActivity() {
                 loadingIndicator.visibility = View.INVISIBLE
             }
         }
+        if(cityName != null) {
+            Log.d("blue","HERE: $cityName")
+            cityViewModel.insertCity(cityName!!,System.currentTimeMillis())
+        }
     }
 
     override fun onResume() {
@@ -115,6 +122,11 @@ class MainActivity : AppCompatActivity() {
         val city = sharedPrefs.getString(getString(R.string.pref_city_key), "Corvallis,OR,US")
         val units = sharedPrefs.getString(getString(R.string.pref_units_key), null)
         viewModel.loadFiveDayForecast(city, units, OPENWEATHER_APPID)
+        if(city != null) {
+            cityName=city
+            Log.d("blue","Resume: $city")
+            cityViewModel.insertCity(city!!,System.currentTimeMillis())
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

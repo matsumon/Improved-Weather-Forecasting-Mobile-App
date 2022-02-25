@@ -5,5 +5,5 @@
     android:id="@+id/settings_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="roomyweather.ui.SettingsFragment"
+    android:name="com.example.android.roomyweather.ui.SettingsFragment"
     tools:context=".ui.SettingsActivity" />
