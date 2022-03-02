@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/donts/Desktop/assignment-4-matsumon/app/src/main/res/layout/activity_forecast_detail.xml" value="0.1546875" />
+        <entry key="..\:/Users/donts/Desktop/assignment-4-matsumon/app/src/main/res/layout/activity_main.xml" value="0.1546875" />
         <entry key="..\:/Users/donts/Desktop/assignment-4-matsumon/app/src/main/res/layout/activity_settings.xml" value="0.2703804347826087" />
+        <entry key="..\:/Users/donts/Desktop/assignment-4-matsumon/app/src/main/res/layout/main_forecast.xml" value="0.1546875" />
         <entry key="app/src/main/res/layout/activity_forecast_detail.xml" value="0.10729166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />

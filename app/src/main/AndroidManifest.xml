@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CS492Weather">
-        <activity
-            android:name=".ui.SettingsActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.MainActivity"/>
-        <activity
-            android:name=".ui.ForecastDetailActivity"
-            android:exported="false"
-            android:parentActivityName=".ui.MainActivity" />
+<!--        <activity-->
+<!--            android:name=".ui.SettingsActivity"-->
+<!--            android:exported="false"-->
+<!--            android:parentActivityName=".ui.MainActivity"/>-->
+<!--        <activity-->
+<!--            android:name=".ui.ForecastDetailActivity"-->
+<!--            android:exported="false"-->
+<!--            android:parentActivityName=".ui.MainActivity" />-->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
