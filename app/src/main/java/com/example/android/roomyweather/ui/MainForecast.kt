@@ -154,7 +154,7 @@ class MainForecast : Fragment(R.layout.main_forecast) {
     }
 
     private fun onForecastItemClick(forecastPeriod: ForecastPeriod) {
-        val directions = MainForecastDirections.navigateToDetailedForecast()
+        val directions = MainForecastDirections.navigateToDetailedForecast(forecastCity = forecastAdapter.forecastCity, forecastPeriod = forecastPeriod)
         findNavController().navigate(directions)
 //        val intent = Intent(this, ForecastDetailActivity::class.java).apply {
 //            putExtra(EXTRA_FORECAST_PERIOD, forecastPeriod)

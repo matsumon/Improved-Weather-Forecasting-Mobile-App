@@ -18,6 +18,13 @@
         android:id="@+id/detail_forecast"
         android:name="com.example.android.roomyweather.ui.ForecastDetailActivityFragment"
         android:label="Detailed Forecast">
+        <argument
+            android:name="forecastCity"
+            app:nullable="true"
+            app:argType="com.example.android.roomyweather.data.ForecastCity" />
+        <argument
+            android:name="forecastPeriod"
+            app:argType="com.example.android.roomyweather.data.ForecastPeriod" />
         <action
             android:id="@+id/navigate_to_main"
             app:destination="@id/main_forecast" />
