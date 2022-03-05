@@ -76,6 +76,12 @@ class DrawerAdapter : RecyclerView.Adapter<DrawerAdapter.ViewHolder>() {
                 Log.d("blue", "${city}")
                 drawerLayouts?.close()
                 publicViewModel?.loadFiveDayForecast(city, units, OPENWEATHER_APPID)
+                val city_exists = cities.firstOrNull{it.name == city}
+                if(city_exists != null) {
+                    city_exists.timestamp = System.currentTimeMillis()
+                }
+                cities.sortByDescending { it.timestamp }
+                notifyDataSetChanged()
             }
         }
     }
