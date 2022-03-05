@@ -12,6 +12,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.android.roomyweather.data.DrawerAdapter
 import com.google.android.material.navigation.NavigationView
 
 
@@ -32,9 +35,12 @@ import com.google.android.material.navigation.NavigationView
  *
  * Alternatively, you can just hard-code your API key below 🤷‍.
  */
+val drawerAdapter = DrawerAdapter()
+var drawerLayouts: DrawerLayout? = null
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var appBarConfiguration: AppBarConfiguration
+//    val drawerAdapter = DrawerAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,11 +48,15 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayouts = drawerLayout
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         findViewById<NavigationView>(R.id.nav_view).setupWithNavController(navController)
 
+        val drawerRV = findViewById<RecyclerView>(R.id.rv_drawer)
+        drawerRV.layoutManager = LinearLayoutManager(this)
+        drawerRV.adapter = drawerAdapter
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

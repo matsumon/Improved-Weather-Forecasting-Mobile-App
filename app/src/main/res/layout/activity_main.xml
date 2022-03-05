@@ -28,12 +28,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start" >
-        <TextView
-            android:id="@+id/drawerTextView"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="This is the drawer content"
-            android:background="@color/white" />
+            android:orientation="vertical"
+            android:id="@+id/rv_drawer"/>
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

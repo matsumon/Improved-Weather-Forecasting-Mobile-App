@@ -42,7 +42,7 @@ import com.google.android.material.snackbar.Snackbar
  * Alternatively, you can just hard-code your API key below 🤷‍.
  */
 const val OPENWEATHER_APPID = BuildConfig.OPENWEATHER_API_KEY
-
+var publicViewModel:FiveDayForecastViewModel? = null
 class MainForecast : Fragment(R.layout.main_forecast) {
 //    private val tag = "MainActivity"
 
@@ -54,9 +54,12 @@ class MainForecast : Fragment(R.layout.main_forecast) {
     private lateinit var forecastListRV: RecyclerView
     private lateinit var loadingErrorTV: TextView
     private lateinit var loadingIndicator: CircularProgressIndicator
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        publicViewModel = viewModel
         loadingErrorTV = view.findViewById(R.id.tv_loading_error)
         loadingIndicator = view.findViewById(R.id.loading_indicator)
         forecastListRV = view.findViewById(R.id.rv_forecast_list)
@@ -105,7 +108,9 @@ class MainForecast : Fragment(R.layout.main_forecast) {
         }
         if(cityName != null) {
             Log.d("blue","HERE: $cityName")
-            cityViewModel.insertCity(cityName!!,System.currentTimeMillis())
+            val current_time = System.currentTimeMillis()
+            cityViewModel.insertCity(cityName!!,current_time)
+            drawerAdapter.addCity(LiteCity(cityName!!,current_time))
         }
     }
 
@@ -127,7 +132,9 @@ class MainForecast : Fragment(R.layout.main_forecast) {
         if(city != null) {
             cityName=city
             Log.d("blue","Resume: $city")
-            cityViewModel.insertCity(city!!,System.currentTimeMillis())
+            val current_time = System.currentTimeMillis()
+            cityViewModel.insertCity(cityName!!,current_time)
+            drawerAdapter.addCity(LiteCity(cityName!!,current_time))
         }
     }
 

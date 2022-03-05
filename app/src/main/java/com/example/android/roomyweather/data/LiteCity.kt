@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class LiteCity(
     @PrimaryKey
     val name: String,
-    val timestamp: Long?
+    var timestamp: Long?
 )
