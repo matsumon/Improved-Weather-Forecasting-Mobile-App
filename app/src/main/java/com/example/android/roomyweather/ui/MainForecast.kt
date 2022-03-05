@@ -76,6 +76,22 @@ class MainForecast : Fragment(R.layout.main_forecast) {
             findNavController().navigate(directions)
             drawerLayouts?.close()
         }
+        citiesButton?.setOnClickListener(){
+            Log.d("blue","HERE ${cityText?.text}")
+            if(cityText?.text != null){
+                val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                var editor = sharedPrefs.edit()
+                editor.putString("city", cityText?.text.toString() )
+                editor.apply()
+                val city = sharedPrefs.getString("city", "Corvallis,OR,US")
+                val units = sharedPrefs.getString("units", "metric")
+                Log.d("blue", "${city}")
+                drawerLayouts?.close()
+                publicViewModel?.loadFiveDayForecast(city, units, OPENWEATHER_APPID)
+                drawerAdapter.addCity(LiteCity(city!!, System.currentTimeMillis()))
+                cityText?.text= null
+            }
+        }
         /*
          * Observe forecast data.  Whenever forecast data changes, display it in the RecyclerView.
          */

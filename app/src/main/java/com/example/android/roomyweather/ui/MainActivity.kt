@@ -40,6 +40,8 @@ import com.google.android.material.navigation.NavigationView
 val drawerAdapter = DrawerAdapter()
 var drawerLayouts: DrawerLayout? = null
 var settingsButton: Button? = null
+var citiesButton: Button? = null
+var cityText: TextView? = null
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -52,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         settingsButton = findViewById(R.id.button_settings)
+        citiesButton = findViewById(R.id.button_city_add)
+        cityText = findViewById(R.id.city_entry_text)
 
         drawerLayouts = drawerLayout
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
