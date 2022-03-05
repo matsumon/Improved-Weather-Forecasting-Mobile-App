@@ -2,6 +2,7 @@ package com.example.android.roomyweather.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.android.roomyweather.R
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +39,7 @@ import com.google.android.material.navigation.NavigationView
  */
 val drawerAdapter = DrawerAdapter()
 var drawerLayouts: DrawerLayout? = null
+var settingsButton: Button? = null
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -48,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        settingsButton = findViewById(R.id.button_settings)
+
         drawerLayouts = drawerLayout
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -10,10 +10,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,7 +71,11 @@ class MainForecast : Fragment(R.layout.main_forecast) {
         forecastListRV.layoutManager = LinearLayoutManager(requireContext())
         forecastListRV.setHasFixedSize(true)
         forecastListRV.adapter = forecastAdapter
-
+        settingsButton?.setOnClickListener(){
+            val directions = MainForecastDirections.navigateToSettings()
+            findNavController().navigate(directions)
+            drawerLayouts?.close()
+        }
         /*
          * Observe forecast data.  Whenever forecast data changes, display it in the RecyclerView.
          */
