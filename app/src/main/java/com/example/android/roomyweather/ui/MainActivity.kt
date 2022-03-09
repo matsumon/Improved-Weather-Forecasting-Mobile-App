@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -45,6 +47,7 @@ var cityText: TextView? = null
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val cityViewModel: CityViewModel by viewModels()
 //    val drawerAdapter = DrawerAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,9 @@ class MainActivity : AppCompatActivity() {
         val drawerRV = findViewById<RecyclerView>(R.id.rv_drawer)
         drawerRV.layoutManager = LinearLayoutManager(this)
         drawerRV.adapter = drawerAdapter
+        if(drawerAdapter.cities.size == 0) {
+            drawerAdapter.updateCitiesList(cityViewModel.bookmarkedRepos.toMutableList())
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
