@@ -19,6 +19,6 @@ interface CityDao {
     @Query(
         "SELECT * FROM LiteCity"
     )
-    fun getAllCities(): Flow<List<LiteCity?>>
+    fun getAllCities(): List<LiteCity?>
 
 }

@@ -17,27 +17,25 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DrawerAdapter : RecyclerView.Adapter<DrawerAdapter.ViewHolder>() {
-    val cities: MutableList<LiteCity> = mutableListOf()
-
+    val cities: MutableList<LiteCity?> = mutableListOf()
+    fun updateCitiesList(newRepoList: MutableList<LiteCity?>?) {
+        cities += newRepoList ?: mutableListOf()
+        notifyDataSetChanged()
+    }
     override fun getItemCount() = this.cities.size
     fun addCity(city: LiteCity, position: Int = 0) {
-        val city_exists = this.cities.firstOrNull{it.name == city.name}
+        val city_exists = this.cities.firstOrNull{it?.name == city.name}
         if(city_exists != null) {
             city_exists.timestamp = city.timestamp
         } else {
             this.cities.add(position, city)
         }
-        cities.sortByDescending { it.timestamp }
+        cities.sortByDescending { it?.timestamp }
         this.notifyDataSetChanged()
         Log.d("Blue","HERE IN addCity ${city}")
         Log.d("Blue","HERE IN addCity ${cities}")
     }
 
-    fun deleteCity(position: Int): LiteCity {
-        val city = this.cities.removeAt(position)
-        this.notifyItemRemoved(position)
-        return city
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -46,7 +44,7 @@ class DrawerAdapter : RecyclerView.Adapter<DrawerAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(this.cities[position])
+        this.cities[position]?.let { holder.bind(it) }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -76,11 +74,11 @@ class DrawerAdapter : RecyclerView.Adapter<DrawerAdapter.ViewHolder>() {
                 Log.d("blue", "${city}")
                 drawerLayouts?.close()
                 publicViewModel?.loadFiveDayForecast(city, units, OPENWEATHER_APPID)
-                val city_exists = cities.firstOrNull{it.name == city}
+                val city_exists = cities.firstOrNull{it?.name == city}
                 if(city_exists != null) {
                     city_exists.timestamp = System.currentTimeMillis()
                 }
-                cities.sortByDescending { it.timestamp }
+                cities.sortByDescending { it?.timestamp }
                 notifyDataSetChanged()
             }
         }

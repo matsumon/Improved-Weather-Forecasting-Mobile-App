@@ -13,7 +13,7 @@ class CityViewModel(application: Application) : AndroidViewModel(application)  {
         AppDatabase.getInstance(application).cityDao()
     )
 
-    val bookmarkedRepos = repository.getAllCities().asLiveData()
+    val bookmarkedRepos = repository.getAllCities()
 
     fun insertCity(name:String, timestamp: Long? = null) {
         viewModelScope.launch {

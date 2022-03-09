@@ -67,7 +67,8 @@ class MainForecast : Fragment(R.layout.main_forecast) {
         forecastListRV = view.findViewById(R.id.rv_forecast_list)
 
         forecastAdapter = ForecastAdapter(::onForecastItemClick)
-
+        Log.d("blue","HERE HERE ${cityViewModel.bookmarkedRepos}")
+        drawerAdapter.updateCitiesList(cityViewModel.bookmarkedRepos.toMutableList())
         forecastListRV.layoutManager = LinearLayoutManager(requireContext())
         forecastListRV.setHasFixedSize(true)
         forecastListRV.adapter = forecastAdapter
