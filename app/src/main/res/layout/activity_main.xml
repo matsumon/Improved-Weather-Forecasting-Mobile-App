@@ -33,45 +33,46 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="left">
+            <com.google.android.material.card.MaterialCardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rv_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <EditText
+                        android:id="@+id/city_entry_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:hint="Enter a City"/>
+
+                    <Button
+                        android:id="@+id/button_city_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:text="Add a City"/>
+
+                    <Button
+                        android:id="@+id/button_settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/rv_drawer"/>
-        <com.google.android.material.card.MaterialCardView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rv_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="left">
 
-                <EditText
-                    android:id="@+id/city_entry_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:hint="Enter a City"/>
-
-                <Button
-                    android:id="@+id/button_city_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:text="Add a City"/>
-
-                <Button
-                    android:id="@+id/button_settings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Settings"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 
